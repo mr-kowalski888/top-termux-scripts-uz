@@ -1,9 +1,9 @@
 # 🚀 TOP Termux Scripts UZ — Termux uchun eng foydali skriptlar (Uzbek tilida)
 
 Termux uchun kuchli, xavfsiz va chiroyli formatdagi bash skriptlar to‘plami.  
-Yangilash, foydali utilitalarni o‘rnatish va tozalashni o‘z ichiga oladi — rus tilida yozilgan.
+Yangilash, foydali utilitalarni o‘rnatish va tozalashni o‘z ichiga oladi — Uzbek tilida yozilgan.
 
-📁 Repozitoriy: [github.com/mr-kowalski888/top-termux-scripts-ru](https://github.com/mr-kowalski888/top-termux-scripts-ru)
+📁 Repozitoriy: [github.com/mr-kowalski888/top-termux-scripts-uz](https://github.com/mr-kowalski888/top-termux-scripts-uz)
 
 ---
 
@@ -35,10 +35,10 @@ GitHub’dan yuklab olib, ruxsat berib, skriptlarni ishga tushiring:
 
 ```bash
 # 📥 GitHub’dan repozitoriyani klon qilamiz
-git clone https://github.com/mr-kowalski888/top-termux-scripts-ru
+git clone https://github.com/mr-kowalski888/top-termux-scripts-uz
 
 # 📂 Papkaga o‘tamiz
-cd top-termux-scripts-ru
+cd top-termux-scripts-uz
 
 # ✅ Skriptlarga bajarish huquqi beramiz:
 # - updg.sh     — yangilash
