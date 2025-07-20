@@ -1,4 +1,4 @@
-# 🚀 TOP Termux Scripts UZ — Termux uchun eng foydali skriptlar (rus tilida)
+# 🚀 TOP Termux Scripts UZ — Termux uchun eng foydali skriptlar (Uzbek tilida)
 
 Termux uchun kuchli, xavfsiz va chiroyli formatdagi bash skriptlar to‘plami.  
 Yangilash, foydali utilitalarni o‘rnatish va tozalashni o‘z ichiga oladi — rus tilida yozilgan.
