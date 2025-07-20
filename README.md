@@ -9,14 +9,14 @@ Yangilash, foydali utilitalarni o‘rnatish va tozalashni o‘z ichiga oladi —
 
 ## 📦 Nima bor?
 
-### 🟢 `updg.sh` — Termux super yangilash
+### 🔄 `updg.sh` — Termux super yangilash
 - Paketlar ro‘yxatini va o‘rnatilgan paketlarni yangilaydi (`pkg update && upgrade`)
 - Keraksiz paketlarni o‘chiradi (`autoremove`)
 - Kesh va vaqtinchalik fayllarni tozalaydi
 - Internet aloqasi va disk bo‘sh joyini tekshiradi
 - Rangli va ramkali chiroyli chiqish
 
-### 🟩 `install.sh` — Foydali utilitalarni o‘rnatish
+### 📥 `install.sh` — Foydali utilitalarni o‘rnatish
 - 30+ eng kerakli utilitalarni o‘rnatadi: `curl`, `git`, `vim`, `figlet`, `lolcat`, `python`, `nmap`, va boshqalar
 - O‘rnatishdan oldin tavsifli ro‘yxat ko‘rsatadi
 - Foydalanuvchidan tasdiq so‘raydi
