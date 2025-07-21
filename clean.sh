@@ -1,67 +1,67 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-# === RANGLAR ===
-YASHIL="\033[1;32m"
-QIZIL="\033[1;31m"
-KO'K="\033[1;34m"
-SARIQ="\033[1;33m"
-TIKLA="\033[0m"
+# === RANGLAR UCHUN O‘ZGARUVCHILAR ===
+GREEN="\033[1;32m"
+RED="\033[1;31m"
+BLUE="\033[1;34m"
+YELLOW="\033[1;33m"
+RESET="\033[0m"
 
-# === RAMKA CHIQARISH FUNKSIYASI ===
-ramka() {
-  echo -e "${KO'K}╔════════════════════════════════════════════╗${TIKLA}"
-  echo -e "${KO'K}║ ${SARIQ}$1${TIKLA}"
-  echo -e "${KO'K}╚════════════════════════════════════════════╝${TIKLA}"
+# === RAMKALI CHIQARISH FUNKSIYASI ===
+frame() {
+  echo -e "${BLUE}╔════════════════════════════════════════════╗${RESET}"
+  echo -e "${BLUE}║ ${YELLOW}$1${RESET}"
+  echo -e "${BLUE}╚════════════════════════════════════════════╝${RESET}"
 }
 
-# === XATO CHIQARISH ===
-xato() {
-  echo -e "${QIZIL}╔════════════════════════════════════════════╗"
+# === XATO XABARLARINI CHIQARISH FUNKSIYASI ===
+error() {
+  echo -e "${RED}╔════════════════════════════════════════════╗"
   echo -e "║ ❌ XATO: $1"
-  echo -e "╚════════════════════════════════════════════╝${TIKLA}"
+  echo -e "╚════════════════════════════════════════════╝${RESET}"
 }
 
-# === BOSHLASH ===
+# === TOZALASHNI BOSHLASH ===
 clear
-ramka "🧹 Termux tozalash boshlandi"
+frame "🧹 Termux tozalash jarayoni boshlandi"
 
-# === 1. APT KESHNI TOZALASH ===
-ramka "🧼 APT paket keshini tozalash..."
+# === 1. APT KESHINI TOZALASH ===
+frame "🧼 APT paketlar keshini tozalash..."
 if ! apt clean; then
-  xato "apt keshi tozalanmadi"
+  error "apt keshini tozalab bo‘lmadi"
 fi
 
-# === 2. FOYDALANILMAGAN PAKETLARNI O‘CHIRISH ===
-ramka "🗑️ Keraksiz paketlarni o‘chirish..."
+# === 2. KERAKSIZ PAKETLARNI O‘CHIRISH ===
+frame "🗑️ Keraksiz paketlarni o‘chirish..."
 if ! apt autoremove -y; then
-  xato "autoremove ishlamadi"
+  error "autoremove bajarilmadi"
 fi
 
-# === 3. ~/.cache NI TOZALASH ===
-ramka "📂 ~/.cache papkasini tozalash..."
-rm -rf ~/.cache/*
+# === 3. ~/.cache PAPKASINI TOZALASH ===
+frame "📂 ~/.cache papkasini tozalash..."
+[[ -d ~/.cache ]] && rm -rf ~/.cache/*
 
 # === 4. TERMUX ICHKI KESHINI TOZALASH ===
-ramka "📂 Termux ichki keshini tozalash..."
-rm -rf /data/data/com.termux/cache/*
+frame "📂 Termux ichki keshini tozalash..."
+[[ -d /data/data/com.termux/cache ]] && rm -rf /data/data/com.termux/cache/*
 
-# === 5. SD-KARTA TRASH FAYLLARINI TOZALASH ===
-ramka "🗑️ /sdcard/.Trash ni tozalash..."
+# === 5. SD-KARTADAGI .Trash NI TOZALASH ===
+frame "🗑️ /sdcard/.Trash fayllarini o‘chirish..."
 rm -rf /sdcard/.Trash/* 2>/dev/null
 
-# === 6. BUYRUQLAR TARIXINI O‘CHIRISH ===
-ramka "📜 Bash yoki Zsh tarixini tozalash..."
+# === 6. BUYRUQLAR TARIXINI TOZALASH (bash/zsh) ===
+frame "📜 Buyruqlar tarixini tozalash..."
 rm -f ~/.bash_history ~/.zsh_history
 
 # === 7. LOCK VA LOG FAYLLARNI O‘CHIRISH ===
-ramka "🔐 Lock va log fayllarni o‘chirish..."
+frame "🔐 APT lock va log fayllarni o‘chirish..."
 rm -f /data/data/com.termux/files/usr/var/lib/apt/lists/lock
 rm -f /data/data/com.termux/files/usr/var/cache/apt/archives/lock
 rm -f /data/data/com.termux/files/usr/var/lib/dpkg/lock
 
-# === 8. XOTIRA HOLATINI KO‘RISH ===
-ramka "📊 Bo‘sh joy holati:"
+# === 8. XOTIRA FOYDALANISHINI KO‘RISH ===
+frame "📊 Xotira ishlatilishi:"
 df -h | grep -E '^(/|/data|/dev|/sdcard)'
 
-# === TUGADI ===
-ramka "✅ Termux tozalash yakunlandi!"
+# === YAKUNIY XABAR ===
+frame "✅ Tozalash muvaffaqiyatli yakunlandi!"
