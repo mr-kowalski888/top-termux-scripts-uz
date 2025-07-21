@@ -1,29 +1,29 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-# === RANGLAR ===
-YASHIL="\033[1;32m"
-QIZIL="\033[1;31m"
-KO‘K="\033[1;34m"
-SARIQ="\033[1;33m"
-TIKLA="\033[0m"
+# === COLORS (ANSI kodlari) ===
+GREEN="\033[1;32m"
+RED="\033[1;31m"
+BLUE="\033[1;34m"
+YELLOW="\033[1;33m"
+RESET="\033[0m"
 
 # === RAMKA CHIQARISH FUNKSIYASI ===
-ramka() {
-  echo -e "${KO‘K}╔════════════════════════════════════════════╗${TIKLA}"
-  echo -e "${KO‘K}║ ${SARIQ}$1${TIKLA}"
-  echo -e "${KO‘K}╚════════════════════════════════════════════╝${TIKLA}"
+frame() {
+  echo -e "${BLUE}╔════════════════════════════════════════════╗${RESET}"
+  echo -e "${BLUE}║ ${YELLOW}$1${RESET}"
+  echo -e "${BLUE}╚════════════════════════════════════════════╝${RESET}"
 }
 
 # === XATO CHIQARISH ===
-xato() {
-  echo -e "${QIZIL}╔════════════════════════════════════════════╗"
-  echo -e "║ ❌ XATO: $1"
-  echo -e "╚════════════════════════════════════════════╝${TIKLA}"
+error() {
+  echo -e "${RED}╔════════════════════════════════════════════╗"
+  echo -e "║ ❌ ERROR: $1"
+  echo -e "╚════════════════════════════════════════════╝${RESET}"
 }
 
 # === DASTURLAR RO‘YXATI + IZOH ===
-izohli_dasturlar=(
-  "curl       - URL dan fayl olish"
+described_packages=(
+  "curl       - URL dan fayl yuklash"
   "wget       - fayl yuklash"
   "git        - versiyalarni boshqarish"
   "nano       - oddiy matn muharriri"
@@ -33,69 +33,79 @@ izohli_dasturlar=(
   "zip        - fayllarni arxivlash"
   "tree       - papkalarni daraxt ko‘rinishda ko‘rsatish"
   "coreutils  - UNIX buyruqlar to‘plami"
-  "htop       - jarayonlarni ko‘rish monitori"
-  "neofetch   - tizim ma'lumotlarini ko‘rsatish"
-  "proot      - root bo‘lmasdan Linux ishga tushirish"
+  "htop       - jarayonlarni kuzatish"
+  "neofetch   - tizim haqida ma'lumot"
+  "proot      - izolyatsiyalangan muhit"
   "termux-api - Android funksiyalariga kirish"
   "openssh    - SSH mijozi/serveri"
-  "dnsutils   - DNS vositalari"
+  "dnsutils   - DNS vositalari (nslookup va boshqalar)"
   "busybox    - UNIX vositalari to‘plami"
   "inxi       - tizim haqida to‘liq ma'lumot"
-  "perl       - inxi ishlashi uchun kerak"
-  "nmap       - portlarni skaner qilish"
-  "netcat     - tarmoqni sinash"
+  "perl       - inxi uchun kerak"
+  "nmap       - portlarni tekshirish"
   "whois      - domen haqida ma'lumot"
-  "traceroute - tarmoq yo‘lini aniqlash"
-  "python     - dasturlash tili"
-  "python-pip - Python kutubxona boshqaruvi"
-  "nodejs     - JavaScript muhit"
-  "php        - PHP ishlovchi muhiti"
-  "clang      - C/C++ kompilyator"
-  "ruby       - Ruby tili"
-  "golang     - Go tili"
+  "traceroute - tarmoq marshrutini aniqlash"
+  "python     - Python dasturlash tili"
+  "python-pip - Python paket menejeri"
+  "nodejs     - JavaScript muhiti"
+  "php        - PHP dasturlash muhiti"
+  "clang      - C/C++ kompilyatori"
+  "ruby       - Ruby dasturlash tili"
+  "golang     - Go dasturlash tili"
   "rust       - Rust dasturlash tili"
   "figlet     - ASCII bannerlar"
-  "toilet     - rangli bannerlar"
-  "lolcat     - rainbow uslubdagi rangli chiqarish"
-  "apt        - paket boshqaruvchisi"
-  "pkg        - Termux uchun soddalashtirilgan boshqaruvchi"
+  "toilet     - bannerlar uchun uslub"
+  "lolcat     - rangli chiqarish (gem orqali o‘rnatiladi)"
 )
 
-# === FAOL DASTURLAR NOMLARI ===
-paketlar=(
+# === O‘RNATILADIGAN PAKETLAR RO‘YXATI (pkg orqali) ===
+packages=(
   curl wget git nano vim unzip tar zip tree coreutils
   htop neofetch proot termux-api openssh dnsutils busybox inxi perl
-  nmap netcat whois traceroute
+  nmap whois traceroute
   python python-pip nodejs php clang ruby golang rust
-  figlet toilet lolcat apt pkg
+  figlet toilet
 )
 
-# === RO‘YXATNI CHIQARISH ===
+# === DASTURLAR RO‘YXATINI CHIQARISH ===
 clear
-ramka "🧰 Quyidagi dasturlar o‘rnatiladi:"
+frame "🧰 Quyidagi dasturlar o‘rnatiladi:"
 
-for qator in "${izohli_dasturlar[@]}"; do
-  echo -e "${YASHIL}  $qator${TIKLA}"
+for line in "${described_packages[@]}"; do
+  echo -e "${GREEN}  $line${RESET}"
 done
 
 echo
-read -p "❓ Davom etaylikmi? (y/n): " tasdiq
-if [[ $tasdiq != "y" && $tasdiq != "Y" ]]; then
-  ramka "⛔ O‘rnatish bekor qilindi"
+read -p "❓ Davom ettiraylikmi? (y/n): " confirm
+if [[ $confirm != "y" && $confirm != "Y" ]]; then
+  frame "⛔ O‘rnatish foydalanuvchi tomonidan bekor qilindi"
   exit 0
 fi
 
-# === O‘RNATISHNI BOSHLASH ===
-ramka "🚀 Dasturlarni o‘rnatish boshlandi..."
+# === PAKETLARNI YANGILASH ===
+frame "🔄 Paketlar ro‘yxati yangilanmoqda..."
+yes | pkg update > /dev/null 2>&1
+yes | pkg upgrade > /dev/null 2>&1
 
-for pkg in "${paketlar[@]}"; do
-  ramka "📥 O‘rnatilmoqda: $pkg"
-  if pkg install -y "$pkg"; then
-    echo -e "${YASHIL}✅ O‘rnatildi: $pkg${TIKLA}"
+# === PAKETLARNI O‘RNATISH ===
+frame "🚀 Dasturlarni o‘rnatish boshlandi..."
+
+for pkg in "${packages[@]}"; do
+  frame "📥 O‘rnatilmoqda: $pkg"
+  if pkg install -y "$pkg" > /dev/null 2>&1; then
+    echo -e "${GREEN}✅ O‘rnatildi: $pkg${RESET}"
   else
-    xato "O‘rnatishda xato: $pkg"
+    error "Xatolik yuz berdi: $pkg"
   fi
 done
 
-# === TAMOM ===
-ramka "✅ Barcha dasturlar muvaffaqiyatli o‘rnatildi!"
+# === lolcat NI O‘RNATISH (gem orqali) ===
+frame "🌈 lolcat gem orqali o‘rnatilmoqda..."
+if gem install lolcat > /dev/null 2>&1; then
+  echo -e "${GREEN}✅ lolcat gem orqali o‘rnatildi${RESET}"
+else
+  error "lolcat ni gem orqali o‘rnatib bo‘lmadi"
+fi
+
+# === YAKUNIY XABAR ===
+frame "✅ Barcha dasturlar muvaffaqiyatli o‘rnatildi!"
